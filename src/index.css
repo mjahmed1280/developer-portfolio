@@ -46,6 +46,10 @@
     animation: fadeIn 0.4s ease-out both;
   }
 
+  .animate-logo-float {
+    animation: logoFloat 4s ease-in-out infinite;
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -54,5 +58,16 @@
   @keyframes fadeIn {
     from { opacity: 0; }
     to   { opacity: 1; }
+  }
+
+  @keyframes logoFloat {
+    0%, 100% {
+      transform: translateY(0);
+      filter: drop-shadow(0 0 3px rgba(96, 165, 250, 0.35));
+    }
+    50% {
+      transform: translateY(-4px);
+      filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.75));
+    }
   }
 }

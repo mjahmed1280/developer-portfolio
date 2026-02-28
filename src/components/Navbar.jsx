@@ -9,8 +9,9 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled,       setScrolled]       = useState(false);
+  const [menuOpen,       setMenuOpen]       = useState(false);
+  const [activeSection,  setActiveSection]  = useState('');
   const [dark, setDark] = useState(() => {
     if (typeof window === 'undefined') return false;
     const stored = localStorage.getItem('theme');
@@ -18,12 +19,14 @@ export default function Navbar() {
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
 
+  /* scroll shadow */
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 8);
     window.addEventListener('scroll', fn, { passive: true });
     return () => window.removeEventListener('scroll', fn);
   }, []);
 
+  /* dark mode */
   useEffect(() => {
     if (dark) {
       document.documentElement.classList.add('dark');
@@ -33,6 +36,22 @@ export default function Navbar() {
       localStorage.setItem('theme', 'light');
     }
   }, [dark]);
+
+  /* active section via IntersectionObserver */
+  useEffect(() => {
+    const ids = navLinks.map(l => l.href.slice(1));
+    const observers = ids.map(id => {
+      const el = document.getElementById(id);
+      if (!el) return null;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { rootMargin: '-20% 0px -60% 0px' }
+      );
+      obs.observe(el);
+      return obs;
+    });
+    return () => observers.forEach(o => o?.disconnect());
+  }, []);
 
   const go = (e, href) => {
     e.preventDefault();
@@ -48,50 +67,92 @@ export default function Navbar() {
     <header className="fixed top-4 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
       <div className="pointer-events-auto w-full max-w-[52rem]">
         <nav className={`flex items-center justify-between gap-2 px-3 h-12 rounded-2xl border transition-all duration-200 ${navBg}`}>
-          <a href="/" className="text-xs font-bold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 px-2.5 py-1 rounded-lg shrink-0 select-none hover:bg-slate-700 dark:hover:bg-white transition-colors">JA</a>
 
+          {/* Logo */}
+          <a href="/" className="shrink-0 select-none animate-logo-float" aria-label="Home">
+            <span className="text-[1.05rem] font-bold tracking-tighter font-mono leading-none">
+              <span className="text-blue-400">{'<'}</span>
+              <span className="text-slate-800 dark:text-slate-100">/</span>
+              <span className="text-blue-400">{'>'}</span>
+            </span>
+          </a>
+
+          {/* Nav links */}
           <ul className="hidden md:flex items-center gap-0.5 flex-1 justify-center">
-            {navLinks.map(l => (
-              <li key={l.href}>
-                <a href={l.href} onClick={e => go(e, l.href)}
-                  className="text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-3 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                  {l.label}
-                </a>
-              </li>
-            ))}
+            {navLinks.map(l => {
+              const isActive = activeSection === l.href.slice(1);
+              return (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    onClick={e => go(e, l.href)}
+                    className={`relative text-xs font-medium px-3 py-1.5 rounded-lg transition-all duration-150 ${
+                      isActive
+                        ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800'
+                    }`}
+                  >
+                    {l.label}
+                    {isActive && (
+                      <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-blue-500" />
+                    )}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
 
+          {/* Right controls */}
           <div className="flex items-center gap-2 shrink-0">
-            <button onClick={() => setDark(!dark)}
+            <button
+              onClick={() => setDark(!dark)}
               className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-              aria-label="Toggle theme">
+              aria-label="Toggle theme"
+            >
               {dark ? <Sun size={15} /> : <Moon size={15} />}
             </button>
-            <a href="mailto:mjahmed1280@gmail.com"
-              className="hidden md:inline-flex items-center text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 hover:bg-slate-700 dark:hover:bg-white transition-colors">
+            <a
+              href="mailto:mjahmed1280@gmail.com"
+              className="hidden md:inline-flex items-center text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 hover:bg-slate-700 dark:hover:bg-white transition-colors"
+            >
               Hire me
             </a>
-            <button onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
+            >
               {menuOpen ? <X size={16} /> : <Menu size={16} />}
             </button>
           </div>
         </nav>
 
+        {/* Mobile menu */}
         {menuOpen && (
           <div className="mt-2 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border border-slate-200 dark:border-slate-700 shadow-lg rounded-2xl px-3 py-3">
             <ul className="flex flex-col gap-1">
-              {navLinks.map(l => (
-                <li key={l.href}>
-                  <a href={l.href} onClick={e => go(e, l.href)}
-                    className="block text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                    {l.label}
-                  </a>
-                </li>
-              ))}
+              {navLinks.map(l => {
+                const isActive = activeSection === l.href.slice(1);
+                return (
+                  <li key={l.href}>
+                    <a
+                      href={l.href}
+                      onClick={e => go(e, l.href)}
+                      className={`block text-sm font-medium px-3 py-2 rounded-lg transition-colors ${
+                        isActive
+                          ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                          : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
+                      }`}
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                );
+              })}
               <li className="mt-1 pt-2 border-t border-slate-100 dark:border-slate-700">
-                <a href="mailto:mjahmed1280@gmail.com"
-                  className="block text-sm font-semibold text-center px-3 py-2 rounded-lg bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900">
+                <a
+                  href="mailto:mjahmed1280@gmail.com"
+                  className="block text-sm font-semibold text-center px-3 py-2 rounded-lg bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900"
+                >
                   Hire me
                 </a>
               </li>

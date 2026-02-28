@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import TechStrip from './components/TechStrip';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
@@ -17,6 +18,7 @@ export default function App() {
         <div className="max-w-[60rem] mx-auto bg-white dark:bg-[#0f1117] shadow-[0_0_0_1px_rgba(99,102,241,0.10),0_0_80px_rgba(99,102,241,0.05)] dark:shadow-[0_0_0_1px_rgba(99,102,241,0.15),0_0_80px_rgba(99,102,241,0.08)] min-h-screen">
           <main>
             <Hero />
+            <TechStrip />
             <Experience />
             <Projects />
             <Skills />
