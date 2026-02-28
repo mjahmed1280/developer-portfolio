@@ -78,7 +78,7 @@ export const projects = [
   {
     id: 2,
     title: 'AI-Driven Meta Ads MCP Server',
-    image: null,
+    image: '/meta ads.jpg',
     date: 'Nov 2025',
     bullets: [
       'MCP server using Python & FastMCP exposing Meta Ads as AI-callable tools',
@@ -148,7 +148,7 @@ export const education = [
     institution: 'LM College, Jai Narayan Vyas University',
     location: 'Rajasthan, IN',
     period: '2019 – 2022',
-    grade: '65.4%',
+    // grade: '65.4%',
   },
 ];
 

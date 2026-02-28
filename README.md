@@ -1,8 +1,9 @@
-# Jakaria Ahmed — Personal Portfolio
+# My Personal Portfolio
 
 A clean, minimal personal portfolio built with **React + Vite + Tailwind CSS**. Dark mode by default, fully responsive, single source of truth for all content.
 
 ---
+### Live Link: https://developer-portfolio-eight-opal.vercel.app/
 
 ## Tech Stack
 
