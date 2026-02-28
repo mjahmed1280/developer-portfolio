@@ -62,7 +62,7 @@ export const projects = [
   {
     id: 1,
     title: 'NutriAI — AI Diet Recommendation App',
-    image: 'public/nutri-ai.jpg',
+    image: '/nutri-ai.jpg',
     date: 'Dec 2025',
     bullets: [
       'React AI chatbot for real-time nutritional coaching and diet management',
