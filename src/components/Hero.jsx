@@ -83,7 +83,7 @@ export default function Hero() {
             GitHub
           </a>
           <a
-            href="/resume.pdf"
+            href="https://github.com/mjahmed1280/developer-portfolio/blob/main/public/J Ahmed M2.pdf"
             target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-indigo-200 dark:border-indigo-700/60 text-indigo-700 dark:text-indigo-400 text-sm font-semibold bg-indigo-50 dark:bg-indigo-900/20
                        transition-all duration-200 ease-out

@@ -14,7 +14,8 @@ export const experiences = [
   {
     id: 1,
     title: 'Software Engineer – Executive',
-    company: 'WPP Media (formerly GroupM)',
+    company: 'WPP Media',
+    logo: '/wpp-logo.jpg',          // replace with /wpp-logo.png
     location: 'Gurugram, IN',
     period: 'July 2024 – Present',
     current: true,
@@ -29,7 +30,8 @@ export const experiences = [
   {
     id: 2,
     title: 'Software Engineer – Intern',
-    company: 'WPP Media',
+    company: 'Group M',
+    logo: '/gm-logo.jpg',          // replace with /wpp-logo.png
     location: 'Gurugram, IN',
     period: 'Jan 2024 – June 2024',
     current: false,
@@ -43,6 +45,7 @@ export const experiences = [
     id: 3,
     title: 'Project Intern',
     company: 'Lovely Professional University (LPU)',
+    logo: '/lpu logo.png',          // replace with /lpu-logo.png
     location: 'Punjab, IN',
     period: 'Jun 2023 – Sept 2023',
     current: false,
@@ -59,7 +62,7 @@ export const projects = [
   {
     id: 1,
     title: 'NutriAI — AI Diet Recommendation App',
-    image: null,
+    image: 'public/nutri-ai.jpg',
     date: 'Dec 2025',
     bullets: [
       'React AI chatbot for real-time nutritional coaching and diet management',
@@ -90,7 +93,7 @@ export const projects = [
   {
     id: 3,
     title: 'DB-Scout — Agentic Data Intelligence Layer',
-    image: null,
+    image: '/db-mini.png',
     date: '2025',
     bullets: [
       'GDG Cloud New Delhi × HackFest 2.0 — reached 4 out of 5 rounds',

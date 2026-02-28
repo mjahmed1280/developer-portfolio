@@ -16,7 +16,7 @@ export default function Navbar() {
     if (typeof window === 'undefined') return false;
     const stored = localStorage.getItem('theme');
     if (stored) return stored === 'dark';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return true;
   });
 
   /* scroll shadow */
@@ -69,7 +69,7 @@ export default function Navbar() {
         <nav className={`flex items-center justify-between gap-2 px-3 h-12 rounded-2xl border transition-all duration-200 ${navBg}`}>
 
           {/* Logo */}
-          <a href="/" className="shrink-0 select-none animate-logo-float" aria-label="Home">
+          <a href="/" className="shrink-0 select-none" aria-label="Home">
             <span className="text-[1.05rem] font-bold tracking-tighter font-mono leading-none">
               <span className="text-blue-400">{'<'}</span>
               <span className="text-slate-800 dark:text-slate-100">/</span>
@@ -104,19 +104,28 @@ export default function Navbar() {
 
           {/* Right controls */}
           <div className="flex items-center gap-2 shrink-0">
+            {/* Smooth pill toggle */}
             <button
               onClick={() => setDark(!dark)}
-              className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               aria-label="Toggle theme"
+              className="relative flex items-center w-[52px] h-[26px] rounded-full border transition-colors duration-300 ease-in-out focus:outline-none
+                         bg-slate-200 border-slate-300 dark:bg-slate-700 dark:border-slate-600"
             >
-              {dark ? <Sun size={15} /> : <Moon size={15} />}
+              {/* sliding knob */}
+              <span
+                className={`absolute top-[3px] w-[20px] h-[20px] rounded-full flex items-center justify-center
+                            bg-white dark:bg-slate-900 shadow-sm
+                            transition-all duration-300 ease-in-out
+                            ${dark ? 'left-[28px]' : 'left-[3px]'}`}
+              >
+                {dark
+                  ? <Moon size={11} className="text-blue-400" />
+                  : <Sun  size={11} className="text-amber-500" />}
+              </span>
+              {/* background icons */}
+              <Sun  size={10} className="absolute left-[5px]  text-amber-400 transition-opacity duration-300 opacity-0 dark:opacity-100" />
+              <Moon size={10} className="absolute right-[5px] text-blue-400  transition-opacity duration-300 opacity-100 dark:opacity-0" />
             </button>
-            <a
-              href="mailto:mjahmed1280@gmail.com"
-              className="hidden md:inline-flex items-center text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 hover:bg-slate-700 dark:hover:bg-white transition-colors"
-            >
-              Hire me
-            </a>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="md:hidden p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
@@ -148,14 +157,6 @@ export default function Navbar() {
                   </li>
                 );
               })}
-              <li className="mt-1 pt-2 border-t border-slate-100 dark:border-slate-700">
-                <a
-                  href="mailto:mjahmed1280@gmail.com"
-                  className="block text-sm font-semibold text-center px-3 py-2 rounded-lg bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900"
-                >
-                  Hire me
-                </a>
-              </li>
             </ul>
           </div>
         )}

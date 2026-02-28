@@ -11,12 +11,12 @@ const stack = [
   { name: 'Flask',      src: `${DEVICON}/flask/flask-original.svg`,      di: true },
   { name: 'MongoDB',    src: `${DEVICON}/mongodb/mongodb-original.svg`           },
   { name: 'React',      src: `${DEVICON}/react/react-original.svg`               },
-  { name: 'TypeScript', src: `${DEVICON}/typescript/typescript-original.svg`     },
-  { name: 'JavaScript', src: `${DEVICON}/javascript/javascript-original.svg`     },
+  // { name: 'TS', src: `${DEVICON}/typescript/typescript-original.svg`     },
+  { name: 'JS', src: `${DEVICON}/javascript/javascript-original.svg`     },
   { name: 'Streamlit',  src: `${DEVICON}/streamlit/streamlit-original.svg`       },
   { name: 'GCP',        src: `${DEVICON}/googlecloud/googlecloud-original.svg`   },
   { name: 'Docker',     src: `${DEVICON}/docker/docker-original.svg`             },
-  { name: 'Kubernetes', src: `${DEVICON}/kubernetes/kubernetes-plain.svg`        },
+  { name: 'K8s', src: `${DEVICON}/kubernetes/kubernetes-plain.svg`        },
   { name: 'GitHub',     src: `${DEVICON}/github/github-original.svg`,    di: true },
 ];
 

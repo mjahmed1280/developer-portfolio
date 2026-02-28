@@ -25,9 +25,31 @@ function ExperienceCard({ exp, isLast }) {
             className="w-full text-left px-5 py-4"
             aria-expanded={open}
           >
-            <div className="flex flex-wrap items-start justify-between gap-3">
+            <div className="flex items-start gap-3">
+              {/* Org logo */}
+              <div className="shrink-0 w-30 h-20 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700/50 overflow-hidden flex items-center justify-center mt-0.5">
+                {exp.logo
+                  ? <img src={exp.logo} alt={exp.company} className="w-full h-full object-cover" />
+                  : <span className="text-[11px] font-bold text-slate-400">{exp.company.slice(0, 2).toUpperCase()}</span>
+                }
+              </div>
+
+              {/* Text content */}
               <div className="flex-1 min-w-0">
-                <h3 className="font-semibold text-slate-900 dark:text-slate-100 text-sm leading-snug">{exp.title}</h3>
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="font-semibold text-slate-900 dark:text-slate-100 text-sm leading-snug">{exp.title}</h3>
+                  <div className="flex items-center gap-2 shrink-0">
+                    {exp.current && (
+                      <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
+                        Current
+                      </span>
+                    )}
+                    <ChevronDown
+                      size={15}
+                      className={`text-slate-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+                    />
+                  </div>
+                </div>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <Briefcase size={11} className="text-blue-500 shrink-0" />
                   <p className="text-blue-600 dark:text-blue-400 font-medium text-xs">{exp.company}</p>
@@ -36,17 +58,6 @@ function ExperienceCard({ exp, isLast }) {
                   <span className="flex items-center gap-1"><Calendar size={11} />{exp.period}</span>
                   <span className="flex items-center gap-1"><MapPin size={11} />{exp.location}</span>
                 </div>
-              </div>
-              <div className="flex items-center gap-2 shrink-0">
-                {exp.current && (
-                  <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
-                    Current
-                  </span>
-                )}
-                <ChevronDown
-                  size={15}
-                  className={`text-slate-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
-                />
               </div>
             </div>
           </button>
@@ -72,7 +83,7 @@ function ExperienceCard({ exp, isLast }) {
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-20 bg-slate-50 dark:bg-slate-800/40 border-y border-slate-100 dark:border-slate-700/50">
+    <section id="experience" className="py-10 bg-slate-50 dark:bg-slate-800/40 border-y border-slate-100 dark:border-slate-700/50">
       <div className="max-w-[60rem] mx-auto px-5">
         <SectionHeading
           label="Experience"
