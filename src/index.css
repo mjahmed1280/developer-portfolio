@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    /* Light: soft indigo-violet ambient glow */
+    background-color: #f0f2ff;
+    background-image:
+      radial-gradient(ellipse 90% 55% at 12% 0%,  rgba(199, 210, 254, 0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 45% at 88% 100%, rgba(221, 214, 254, 0.45) 0%, transparent 60%);
+    background-attachment: fixed;
+    @apply text-slate-900 font-sans;
+  }
+
+  ::selection {
+    @apply bg-indigo-100 text-indigo-900;
+  }
+}
+
+/* Dark mode body — class strategy, must be outside @layer to avoid PostCSS issues */
+.dark body {
+  background-color: #0d0f1a;
+  background-image:
+    radial-gradient(ellipse 90% 55% at 12% 0%,  rgba(67, 56, 202, 0.28) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 45% at 88% 100%, rgba(109, 40, 217, 0.22) 0%, transparent 60%);
+}
+
+.dark ::selection {
+  background-color: #312e81;
+  color: #e0e7ff;
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.5s ease-out both;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-out both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+}
