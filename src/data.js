@@ -104,7 +104,7 @@ export const projects = [
     ],
     tech: ['Python', 'LangGraph', 'FastAPI', 'LiteLLM', 'Gemini 2.5', 'Google Cloud Run', 'Firestore', 'Google Sheets API', 'Langfuse', 'Pytest'],
     github: 'https://github.com/mjahmed1280/track-anything-agent',
-    demo: null,
+    demo: 'https://web.telegram.org/a/#7775902852',
     highlight: 'Latest',
   },
   {
