@@ -61,8 +61,8 @@ export const experiences = [
 export const projects = [
   {
     id: 1,
-    title: 'NutriAI — AI Diet Recommendation App',
-    image: '/nutri-ai.jpg',
+    title: 'NutriAI — Full-Stack AI Nutrition App',
+    image: '/nutriai-clean.jpg',
     date: 'Dec 2025',
     bullets: [
       'React AI chatbot for real-time nutritional coaching and diet management',
@@ -75,20 +75,37 @@ export const projects = [
     demo: 'https://nutri-ai-bot.vercel.app/',
     highlight: 'Live',
   },
+  // {
+  //   id: 2,
+  //   title: 'AI-Driven Meta Ads MCP Server',
+  //   image: '/meta ads.jpg',
+  //   date: 'Nov 2025',
+  //   bullets: [
+  //     'MCP server using Python & FastMCP exposing Meta Ads as AI-callable tools',
+  //     'Translates natural language → Meta Graph & Marketing API v24 interactions',
+  //     'Enables conversational campaign creation, optimisation, and insights',
+  //   ],
+  //   tech: ['Python', 'FastMCP', 'Vertex AI', 'Gemini 2.5', 'Meta Graph API v24', 'Marketing API'],
+  //   github: 'https://github.com/mjahmed1280/meta-ads-ai-mcp-v1',
+  //   demo: null,
+  //   highlight: 'Open Source',
+  // },
   {
     id: 2,
-    title: 'AI-Driven Meta Ads MCP Server',
-    image: '/meta ads.jpg',
-    date: 'Nov 2025',
+    title: 'Trackbot — Agentic AI Personal Tracker',
+    image: '/trackbot-clean.jpg', // Ensure you have an image at this path or update accordingly
+    date: 'Feb 2026',
     bullets: [
-      'MCP server using Python & FastMCP exposing Meta Ads as AI-callable tools',
-      'Translates natural language → Meta Graph & Marketing API v24 interactions',
-      'Enables conversational campaign creation, optimisation, and insights',
+      'Automates personal data tracking (finances, health, habits) via Telegram and Google Sheets using LangGraph and FastAPI',
+      'NLP and multi-modal extraction from receipts, notes, and meal images replaces manual data entry',
+      'Implemented Human-in-the-Loop confirmation for new tracker creation and LLM-generated rolling history for context management',
+      'Features auto model-switching via LiteLLM (Gemini 2.5 Pro/Flash, Qwen) for high uptime and rate-limit resilience',
+      'Integrated Langfuse for real-time observability of reasoning paths, tool-calling latency, and token costs',
     ],
-    tech: ['Python', 'FastMCP', 'Vertex AI', 'Gemini 2.5', 'Meta Graph API v24', 'Marketing API'],
-    github: 'https://github.com/mjahmed1280/meta-ads-ai-mcp-v1',
+    tech: ['Python', 'LangGraph', 'FastAPI', 'LiteLLM', 'Gemini 2.5', 'Google Cloud Run', 'Firestore', 'Google Sheets API', 'Langfuse', 'Pytest'],
+    github: 'https://github.com/mjahmed1280/track-anything-agent',
     demo: null,
-    highlight: 'Open Source',
+    highlight: 'Latest',
   },
   {
     id: 3,
